@@ -36,6 +36,27 @@ const nameColors = {
     'Winnipeg Jets': '#041E42',
 }
 
+const seasonColors = {
+    '2022-23': ['#f5f0f0', '#d15c62'],
+    '2021-22': ['#f5f3f0', '#d97d41'],
+    '2020-21': ['#f4f5f0', '#cfb534'],
+    '2019-20': ['#f0f5f2', '#53b874'],
+    '2018-19': ['#f0f3f5', '#5390b8'],
+    '2017-18': ['#f3f0f5', '#7b53b8'],
+}
+
+const filterColors = {
+    'black': ['#000', '#fff'],
+    'blue': ['#2d67ed', '#fff'],
+    'green': ['18b534', '#fff'],
+    'grey': ['#eee', '#8c8c8c'],
+    'orange': ['#f0851a', '#fff'],
+    'white': ['#fff', '#22'],
+    'yellow': ['#f7de4d', '#222'],
+    'purple': ['a455ed', '#fff'],
+    'red': ['#f04937', '#fff'],
+}
+
 export function loadPreviews(jerseys, currPage) {
     //var container = $('#jersey');
     const tempContainer = document.createElement('div');
@@ -77,6 +98,8 @@ function displaySeasons(seasons) {
         var season = document.createElement('div');
         season.className = "season";
         season.innerHTML = `${seasons[i]}`;
+        season.style.backgroundColor = seasonColors[seasons[i]][0];
+        season.style.color = seasonColors[seasons[i]][1];
         seasonContainer.appendChild(season);
     }
 
@@ -93,8 +116,17 @@ export function loadOptions(lists, types) {
             var o = document.createElement('div');
             o.className = "form-check";
             o.innerHTML = `
-                <input type="checkbox" name="filter" class="form-check-input" id="${options[j]}" data-label="${types[i]}">
-                <label for="${options[j]}"> ${options[j]} </labe>`;
+                <input type="checkbox" name="filter" class="form-check-input" id="${options[j]}" data-label="${types[i]}">`;
+            if (types[i] == "team") {
+                o.innerHTML += `<label class="label" for="${options[j]}"> <img src="./imgs/logos/${options[j].toLowerCase()}.png" class="filter-logo" /> ${options[j]} </label>`;
+            } else if (types[i] == "color") {
+                console.log(options[j]);
+                var bg = filterColors[options[j]][0];
+                var color = filterColors[options[j]][1];
+                o.innerHTML += `<label class="label color-label" style="background-color: ${bg}; color: ${color};" for="${options[j]}"> ${options[j]} </label>`;
+            } else {
+                o.innerHTML += `<label class="label" for="${options[j]}"> ${options[j]} </label>`;
+            }            
             gridContainer.appendChild(o);
         }
         document.getElementById(types[i]).appendChild(gridContainer);

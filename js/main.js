@@ -5,8 +5,9 @@ import { loadFilters, loadPreviews, loadOptions, loadSubpage } from './template.
 let teamFilters = new Set();
 let seasonFilters = new Set();
 let catFilters = new Set();
-let filters = [catFilters, teamFilters, seasonFilters];
-let types = ["cat", "team", "season"];
+let colorFilters = new Set();
+let filters = [catFilters, teamFilters, seasonFilters, colorFilters];
+let types = ["cat", "team", "season", "color"];
 let jerseys; 
 let currPage = 1;
 
@@ -18,18 +19,19 @@ for (var i = 0; i < jsonObject.jerseys.length; i++) {
     makeJerseys(jsonObject.jerseys[i], i, jerseys, jerseySet);
 }
 
-var categories = new Set();
-var teams = new Set();
-var seasons = new Set();
+var catSet = new Set();
+var teamSet = new Set();
+var seasonSet = new Set();
+var colorSet = new Set();
 
-categories = getCategories(jerseys, categories);
-teams = getTeams(jerseys, teams);
-seasons = getSeasons(jerseys, seasons);
+const categories = getCategories(jerseys, catSet);
+const teams = getTeams(jerseys, teamSet);
+const seasons = getSeasons(jerseys, seasonSet);
+const colors = getColors(jerseys, colorSet);
 
 $(document).ready(function(e) {
     const searchParams = new URLSearchParams(window.location.search);
     const subpageId = searchParams.get('id');
-    console.log(subpageId);
 
     if (subpageId) {
         const jersey = jerseySet[subpageId - 1];
@@ -39,10 +41,8 @@ $(document).ready(function(e) {
     } else {
         document.getElementById('home').style.display = 'block';
         $("#clear-filters").hide();
-
         // load filters
-        loadOptions([categories, teams, seasons], types);
-
+        loadOptions([categories, teams, seasons, colors], types);
         // load grid
         load(jerseys, currPage, filters);
     }
@@ -55,7 +55,8 @@ $(document).ready(function(e) {
         }
         filters[0] = catFilters;
         toggleClear();
-        load(jerseys, 1, filters);
+        currPage = 1;
+        load(jerseys, currPage, filters);
     });   
 
     $('#team input').on('click', function() {
@@ -66,7 +67,8 @@ $(document).ready(function(e) {
         }
         filters[1] = teamFilters;
         toggleClear();
-        load(jerseys, 1, filters);
+        currPage = 1;
+        load(jerseys, currPage, filters);
     });   
 
     $('#season input').on('click', function() {
@@ -77,8 +79,21 @@ $(document).ready(function(e) {
         }
         filters[2] = seasonFilters;
         toggleClear();
-        load(jerseys, 1, filters);
+        currPage = 1;
+        load(jerseys, currPage, filters);
     });   
+
+    $('#color input').on('click', function() {
+        if ($(this).is(':checked')) {
+            colorFilters.add($(this).attr('id'));
+        } else {
+            colorFilters.delete($(this).attr('id'));
+        }
+        filters[3] = colorFilters;
+        toggleClear();
+        currPage = 1;
+        load(jerseys, currPage, filters);
+    });
 
     // click on page number
     $('#page-container').on('click', '.page-item.num', function() {
@@ -124,13 +139,21 @@ $(document).ready(function(e) {
         $("#clear-filters-season").hide();
     });
 
-    // clear season filters
+    // clear color filters
+    $('#filters').on('click', '#clear-filters-color', function() {
+        clearCheckboxes("color");
+        load(sortJerseys(jerseys), currPage, filters);
+        $("#clear-filters-color").hide();
+    });    
+
+    // clear all filters
     $('#filters').on('click', '#clear-filters-all', function() {
         clearCheckboxes("all");
         load(sortJerseys(jerseys), currPage, filters);
         $("#clear-filters-cat").hide();
         $("#clear-filters-team").hide();
         $("#clear-filters-season").hide();
+        $("#clear-filters-color").hide();
         $("#clear-filters-all").hide();
     });
 });
@@ -173,9 +196,9 @@ function load(jerseys, currPage, filters) {
     const filteredJerseys = sortJerseys(jerseys).filter(jersey => {
         return (filter(filters[0], [jersey.category]) & 
                 filter(filters[1], [jersey.team]) &
-                filter(filters[2], jersey.seasons));
+                filter(filters[2], jersey.seasons) &
+                filter(filters[3], jersey.color));
     });
-
     var scrollPos = $(window).scrollTop();
     loadPreviews(filteredJerseys, currPage);
     setTimeout(function() {
@@ -201,6 +224,16 @@ function getTeams(jerseys, teams) {
 function getCategories(jerseys, categories) {
     jerseys.forEach(i => categories.add(i.category));
     return Array.from(categories).sort();
+}
+
+function getColors(jerseys, colors) {
+    jerseys.forEach((i) => {
+        var colorVals = i.color;
+        for (var i = 0; i < colorVals.length; i++) {
+            colors.add(colorVals[i]);
+        }
+    });
+    return Array.from(colors).sort();
 }
 
 function makeJerseys(data, i, jerseys, jerseySet) {
@@ -234,7 +267,7 @@ function makeJerseys(data, i, jerseys, jerseySet) {
         team_id: data.team_id,
         event: data.event,
         team: data.team,
-        team_full: data.team_full, // team_full: [data.team_full, data.base_color]
+        team_full: data.team_full,
         category: data.category,
         seasons: (data.seasons).split(", "),
         date: days_worn,
@@ -249,6 +282,7 @@ function makeJerseys(data, i, jerseys, jerseySet) {
         img_urls: (data.img_urls).split(", "),
         a_embed: a_embed,
         m_embed: m_embed,
+        color: (data.base_color).split(", "),
     }  
     jerseys.push(jersey);
     jerseySet[i] = jersey;
