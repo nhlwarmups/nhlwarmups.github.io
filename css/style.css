@@ -162,8 +162,8 @@ p {
 }
 
 .logo {
-    max-height: 22px;
-    max-width: 22px;
+    max-height: 20px;
+    max-width: 20px;
     padding: 4px;
     box-sizing: content-box;
 }
@@ -780,7 +780,7 @@ iframe {
 }
 
 .video-section {
-    padding-top: 20px;
+    padding: 10px 0;
     margin: 0 auto;
     display: flex;
     justify-content: center;

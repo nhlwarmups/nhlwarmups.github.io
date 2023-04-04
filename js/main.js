@@ -11,7 +11,7 @@ let jerseys;
 let currPage = 1;
 
 const jerseySet = {};
-    
+
 // init jerseys
 jerseys = [];
 for (var i = 0; i < jsonObject.jerseys.length; i++) {
