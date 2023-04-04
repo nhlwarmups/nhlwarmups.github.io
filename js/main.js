@@ -123,6 +123,7 @@ $(document).ready(function(e) {
         clearCheckboxes("cat");
         load(sortJerseys(jerseys), currPage, filters);
         $("#clear-filters-cat").hide();
+        $('#cat').collapse('hide');
     });
 
     // clear team filters
@@ -130,6 +131,7 @@ $(document).ready(function(e) {
         clearCheckboxes("team");
         load(sortJerseys(jerseys), currPage, filters);
         $("#clear-filters-team").hide();
+        $('#team').collapse('hide');
     });
 
     // clear season filters
@@ -137,6 +139,7 @@ $(document).ready(function(e) {
         clearCheckboxes("season");
         load(sortJerseys(jerseys), currPage, filters);
         $("#clear-filters-season").hide();
+        $("#season").collapse('hide');
     });
 
     // clear color filters
@@ -144,6 +147,7 @@ $(document).ready(function(e) {
         clearCheckboxes("color");
         load(sortJerseys(jerseys), currPage, filters);
         $("#clear-filters-color").hide();
+        $("#color").collapse('hide');
     });    
 
     // clear all filters
@@ -155,6 +159,10 @@ $(document).ready(function(e) {
         $("#clear-filters-season").hide();
         $("#clear-filters-color").hide();
         $("#clear-filters-all").hide();
+        $('#cat').collapse('hide');
+        $('#team').collapse('hide');
+        $('#season').collapse('hide');
+        $('#color').collapse('hide');
     });
 });
 

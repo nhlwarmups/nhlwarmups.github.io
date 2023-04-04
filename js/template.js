@@ -71,14 +71,14 @@ export function loadPreviews(jerseys, currPage) {
         link.className = "card-link";
         link.innerHTML = `
                 ${displaySeasons(jersey.seasons)}
-                <img class="thumbnail-img" src="imgs/thumb-sml/${jersey.team_id}.png" />
+                <img class="thumbnail-img" src="imgs/thumb-sml/${jersey.team_id}.png" alt="${jersey.team_full} jersey design for ${jersey.event}" />
                 <div class="info">
                     <div style="flex-grow: 1;">
                         <div class="event"> <strong>${jersey.event}</strong> </div>
                         <div class="artist"> With ${jersey.artist} </div>
                     </div>
                 <div class="logo-container">
-                    <img src="imgs/logos/${jersey.team.toLowerCase()}.png" class="preview-logo" />
+                    <img src="imgs/logos/${jersey.team.toLowerCase()}.png" class="preview-logo" alt="${jersey.team_full} logo" />
                 </div>
             </div>`;
 
@@ -120,7 +120,6 @@ export function loadOptions(lists, types) {
             if (types[i] == "team") {
                 o.innerHTML += `<label class="label" for="${options[j]}"> <img src="./imgs/logos/${options[j].toLowerCase()}.png" class="filter-logo" /> ${options[j]} </label>`;
             } else if (types[i] == "color") {
-                console.log(options[j]);
                 var bg = filterColors[options[j]][0];
                 var color = filterColors[options[j]][1];
                 o.innerHTML += `<label class="label color-label" style="background-color: ${bg}; color: ${color};" for="${options[j]}"> ${options[j]} </label>`;
@@ -259,7 +258,7 @@ export async function loadSubpage(jersey) {
                 <div class="card thumbnail">
                     <div class="info">
                         <div class="info-line">
-                            <img src="imgs/logos/${jersey.team.toLowerCase()}.png" class="logo" />
+                            <img src="imgs/logos/${jersey.team.toLowerCase()}.png" class="logo" alt="${jersey.team_full} logo" />
                             <span class="team" style="color: ${nameColors[jersey.team_full]}">${jersey.team_full}</span> 
                         </div>
                         <div class="title">
@@ -268,7 +267,7 @@ export async function loadSubpage(jersey) {
                         </div>
                         <span class="date">Worn ${(jersey.date_pretty).join(", ")}</span>
                     </div>
-                    <div class="thumbnail-container"> <img src="imgs/thumbnails/${jersey.team_id}.png" /> </div>
+                    <div class="thumbnail-container"> <img src="imgs/thumbnails/${jersey.team_id}.png" alt="${jersey.team_full} jersey design for ${jersey.event}" /> </div>
                     <span id="thumbnail-caption">With <b>${jersey.artist}</b> ${org}</span>
                 </div>
                 <div id="video-anchor-a"> </div>
