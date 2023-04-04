@@ -9,6 +9,10 @@
     --catalog-margin: 5px;
 }
 
+#home {
+    display: none;
+}
+
 button:hover, input:hover {
     cursor: pointer !important;
 }
