@@ -210,7 +210,7 @@ export function loadSubpage(jersey) {
                 <div class="card thumbnail">
                     <div class="info">
                         <div class="info-line">
-                            <img src="imgs/logos/${jersey.team}.png" class="logo" />
+                            <img src="imgs/logos/${jersey.team.toLowerCase()}.png" class="logo" />
                             <span class="team">${jersey.team_full}</span> 
                         </div>
                         <div class="title">
