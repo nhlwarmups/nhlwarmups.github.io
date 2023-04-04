@@ -105,22 +105,42 @@ $(document).ready(function(e) {
     });
 
     // click on page number
-    $('#page-container').on('click', '.page-item.num', function() {
+    $('#page-container-top').on('click', '.page-item.num', function() {
         currPage = this.textContent;
         load(jerseys, currPage, filters);
     });     
 
     // click on prev button
-    $('#page-container').on('click', '#prev-button', function() {
+    $('#page-container-top').on('click', '#prev-button', function() {
         if (currPage > 1) { currPage--; }
         load(jerseys, currPage, filters);
     });   
 
     // click on next button
-    $('#page-container').on('click', '#next-button', function() {
+    $('#page-container-top').on('click', '#next-button', function() {
         if (currPage < getNumPages()) { currPage++; }
         load(jerseys, currPage, filters);
     });   
+
+
+    // click on page number
+    $('#page-container-bottom').on('click', '.page-item.num', function() {
+        currPage = this.textContent;
+        load(jerseys, currPage, filters);
+    });     
+
+    // click on prev button
+    $('#page-container-bottom').on('click', '#prev-button', function() {
+        if (currPage > 1) { currPage--; }
+        load(jerseys, currPage, filters);
+    });   
+
+    // click on next button
+    $('#page-container-bottom').on('click', '#next-button', function() {
+        if (currPage < getNumPages()) { currPage++; }
+        load(jerseys, currPage, filters);
+    });   
+    
 
     // select sort
     $('#sort-select').on('change', function() {
@@ -189,7 +209,7 @@ function toggleClear() {
 }
 
 function getNumPages() {
-    return ($('#page-container').children('li').length - 2);
+    return ($('#page-container-top').children('li').length - 2);
 }
 
 function clearCheckboxes(type) {

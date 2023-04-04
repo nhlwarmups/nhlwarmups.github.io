@@ -12,8 +12,16 @@ function calcPages(jerseys) {
   return Math.ceil(jerseys.length / maxItems);
 }
 
-export function loadPages(jerseys, currPage) {
-    var container = $('#page-container').empty();
+export function loadPages(jerseys, currPage, location) {
+    var container;
+
+    if (location == "top") {
+        container = $('#page-container-top').empty();
+    } 
+
+    if (location == "bottom") {
+        container = $('#page-container-bottom').empty();
+    }
 
     if (jerseys.length > 0) {
         $('#result-num').html(`${startIndex+1} - ${Math.min(endIndex,jerseys.length)} of ${jerseys.length}`);

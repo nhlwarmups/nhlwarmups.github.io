@@ -476,6 +476,10 @@ div[event="Pride"]
     -ms-user-select: none;
 }
 
+#page-container-bottom {
+    margin-top: 16px;
+}
+
 .pagination .active {
     cursor: default;
 }
@@ -493,7 +497,7 @@ div[event="Pride"]
 .form-check {
     display: flex !important;
     align-items: center !important;
-    padding: 4px 0;
+    padding: 3px 2px 3px 0;
 }
 
 .form-check-input {
@@ -525,6 +529,10 @@ form {
 @media screen and (min-width: 768px) and (max-width: 991px) {
     .grid-team {
         grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+    }
+
+    #sort-select {
+        font-size: 11px !important;
     }
 }
 
@@ -629,8 +637,7 @@ footer {
 
 .result-info-container {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     gap: 8px;
 }
 
@@ -728,6 +735,7 @@ footer {
     font-family: 'IBM Plex Mono', sans-serif;
     letter-spacing: 0.1px;
     word-spacing: -3px;
+    margin-top: 2px;
 }
 
 #sort-select:focus {
@@ -829,4 +837,8 @@ a.card-link:hover {
     border-radius: 99px;
     line-height: 1.2;
     font-size: 11px;
+}
+
+.sort-container {
+    margin-top: 10px;
 }

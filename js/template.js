@@ -87,7 +87,8 @@ export function loadPreviews(jerseys, currPage) {
     });
 
     $('#jersey').html(tempContainer.innerHTML);
-    loadPages(jerseys, currPage);
+    loadPages(jerseys, currPage, "top");
+    loadPages(jerseys, currPage, "bottom");
 }
 
 function displaySeasons(seasons) {
