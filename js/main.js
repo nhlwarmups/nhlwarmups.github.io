@@ -290,7 +290,7 @@ function makeJerseys(data, i, jerseys, jerseySet) {
         date: days_worn,
         date_pretty: (data.day_worn_pretty).split("; "),
         artist: data.artist,
-        org_name: (data.org_name).split(", "),
+        org_name: (data.org_name).split(" / "),
         org_url: (data.org_url).split(", "),
         statement: data.statement,
         source: data.source,
