@@ -11,14 +11,14 @@ let jerseys;
 
 const jerseySet = {};
 
-window.addEventListener('pageshow', async function() {
+window.addEventListener('pageshow', function() {
     const searchParams = new URLSearchParams(window.location.search);
     const subpageId = searchParams.get('id');
     
     if (subpageId) {
         const jersey = jerseySet[subpageId - 1];
         var url = `${window.location.pathname}?${searchParams.toString()}`;
-        await loadSubpage(jersey);
+        loadSubpage(jersey);
         document.getElementById('home').style.display = 'block';
     } else {
         document.getElementById('home').style.display = 'block';
