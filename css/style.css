@@ -806,6 +806,5 @@ a.card-link:hover {
 /* mobile woes */
 .thumbnail img {
     max-width: 100%;
-    aspect-ratio: 10/6;
     object-fit: cover;
 }
