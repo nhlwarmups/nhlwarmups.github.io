@@ -55,6 +55,8 @@ $(document).ready(function(e) {
         }
         filters[0] = catFilters;
         toggleClear();
+        if (catFilters.size == 0) { $('#cat').collapse('hide'); }
+
         currPage = 1;
         load(jerseys, currPage, filters);
     });   
@@ -66,7 +68,10 @@ $(document).ready(function(e) {
             teamFilters.delete($(this).attr('id'));
         }
         filters[1] = teamFilters;
+        if (teamFilters.size == 0) { $('#team').collapse('hide'); }
+
         toggleClear();
+
         currPage = 1;
         load(jerseys, currPage, filters);
     });   
@@ -79,6 +84,8 @@ $(document).ready(function(e) {
         }
         filters[2] = seasonFilters;
         toggleClear();
+        if (seasonFilters.size == 0) { $('#season').collapse('hide'); }
+
         currPage = 1;
         load(jerseys, currPage, filters);
     });   
@@ -91,6 +98,8 @@ $(document).ready(function(e) {
         }
         filters[3] = colorFilters;
         toggleClear();
+        if (colorFilters.size == 0) { $('#color').collapse('hide'); }
+
         currPage = 1;
         load(jerseys, currPage, filters);
     });
