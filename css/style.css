@@ -9,10 +9,6 @@
     --catalog-margin: 5px;
 }
 
-#home {
-    display: none;
-}
-
 button:hover, input:hover {
     cursor: pointer !important;
 }
@@ -136,10 +132,6 @@ p {
     padding: 15px 20px;
 }
 
-.thumbnail {
-    text-align: center;
-}
-
 .detail-content {
     border-top: 1px solid var(--light-grey);
 }
@@ -149,9 +141,10 @@ p {
 }
 
 .thumbnail {
+    text-align: center;
     padding: 0;
     overflow: hidden;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 }
 
 .accordion {

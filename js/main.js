@@ -19,9 +19,9 @@ window.addEventListener('pageshow', function() {
         const jersey = jerseySet[subpageId - 1];
         var url = `${window.location.pathname}?${searchParams.toString()}`;
         loadSubpage(jersey);
-        document.getElementById('home').style.display = 'block';
+        //document.getElementById('home').style.display = 'block';
     } else {
-        document.getElementById('home').style.display = 'block';
+        //document.getElementById('home').style.display = 'block';
     }
 });
 
@@ -248,12 +248,13 @@ function makeJerseys(data, i, jerseys, jerseySet) {
         socials["shop"] = data.shop;
     }   
 
-    var embeds = [];
+    var a_embed = [];
+    var m_embed = [];
     var artist_embeds =(data.artist_embed).split(", ");
     var misc_embeds =(data.misc_embed).split(", ");
 
-    artist_embeds.forEach(e => { if (e != "") { embeds.push(e); } });
-    misc_embeds.forEach(e => { if (e != "") { embeds.push(e); } });
+    artist_embeds.forEach(e => { if (e != "") { a_embed.push(e); } });
+    misc_embeds.forEach(e => { if (e != "") { m_embed.push(e); } });
 
     const jersey = {
         id: data.id,
@@ -273,7 +274,8 @@ function makeJerseys(data, i, jerseys, jerseySet) {
         notes: data.notes,
         socials: socials,
         img_urls: (data.img_urls).split(", "),
-        embeds: embeds,
+        a_embed: a_embed,
+        m_embed: m_embed,
     }  
     jerseys.push(jersey);
     jerseySet[i] = jersey;

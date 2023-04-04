@@ -222,6 +222,7 @@ export function loadSubpage(jersey) {
                     <img src="imgs/thumbnails/${jersey.team_id}.png" />
                     <span id="thumbnail-caption">With <b>${jersey.artist}</b> ${org}</span>
                 </div>
+                <div id="video-anchor-a"> </div>
             </div>
             
             <div class="col-md-6"> <!-- extra info -->
@@ -258,12 +259,8 @@ export function loadSubpage(jersey) {
                     <h3 class="section-title"> Gallery </h3>
                     ${imageGal}
                 </div>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col" id="video-anchor">
-             
+                <div id="video-anchor-m"> </div>
             </div>
         </div>
     </div>`;
@@ -271,19 +268,30 @@ export function loadSubpage(jersey) {
     var container = $('#home');
     container.empty().append(subpageDiv);
 
-    const embedContainer = document.createElement('div');
-    embedContainer.className = "video-section";
+    const artistEmbedContainer = document.createElement('div');
+    artistEmbedContainer.className = "video-section";
 
-    if (jersey.embeds.length > 0) {
-        for (var i = 0; i < jersey.embeds.length; i++) {
+    if (jersey.a_embed.length > 0) {
+        for (var i = 0; i < jersey.a_embed.length; i++) {
             const embed = `<blockquote class="twitter-tweet">
-            <a href="https://twitter.com/x/status/${jersey.embeds[i]}"></a> 
+            <a href="https://twitter.com/x/status/${jersey.a_embed[i]}"></a> 
             </blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`;  
-            embedContainer.insertAdjacentHTML("beforeend", embed);
+            artistEmbedContainer.insertAdjacentHTML("beforeend", embed);
         }
     } 
+    $('#video-anchor-a').append(artistEmbedContainer.outerHTML);
 
-    $('#video-anchor').append(embedContainer.outerHTML);
+    const miscEmbedContainer = document.createElement('div');
+    miscEmbedContainer.className = "video-section";
+    if (jersey.m_embed.length > 0) {
+        for (var i = 0; i < jersey.m_embed.length; i++) {
+            const embed = `<blockquote class="twitter-tweet">
+            <a href="https://twitter.com/x/status/${jersey.m_embed[i]}"></a> 
+            </blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`;  
+            miscEmbedContainer.insertAdjacentHTML("beforeend", embed);
+        }
+    } 
+    $('#video-anchor-m').append(miscEmbedContainer.outerHTML);
 
     // replace img for modal
     $('.image-container-preview').on('click', function() {
