@@ -15,7 +15,7 @@ export function loadPreviews(jerseys, currPage) {
         link.className = "card-link";
         link.innerHTML = `
                 ${displaySeasons(jersey.seasons)}
-                <img class="thumbnail-img" src="imgs/thumbnails/${jersey.team_id}.png" />
+                <img class="thumbnail-img" src="imgs/thumb-sml/${jersey.team_id}.png" />
                 <div class="info">
                     <div style="flex-grow: 1;">
                         <div class="event"> <strong>${jersey.event}</strong> </div>
