@@ -112,24 +112,6 @@ export function loadFilters(filters, types) {
     </div>
 */
 
-/* function loadEmbeds(jersey) {
-    const embedContainer = document.createElement('div');
-    embedContainer.className = "video-section";
-
-    if (jersey.embeds.length > 0) {
-        for (var i = 0; i < jersey.embeds.length; i++) {
-            const embed = `<blockquote class="twitter-tweet">
-            <a href="https://twitter.com/x/status/${jersey.embeds[i]}"></a> 
-            </blockquote>`;  
-            embedContainer.insertAdjacentHTML("beforeend", embed);
-            console.log(embedContainer.outerHTML);
-        }
-        return embedContainer.outerHTML;
-    } else {
-        return "";
-    }
-} */
-
 // https://pbs.twimg.com/media/${imgs[i]}?format=jpg&name=orig
 function getImageGal(jersey) {
     const imageGallery = document.createElement('div');
@@ -197,7 +179,7 @@ function getOrg(jersey) {
     }
 }
 
-export function loadSubpage(jersey) {
+export async function loadSubpage(jersey) {
     document.title = jersey.event;
     var subpageDiv = $('<div>');
     var socials = getSocials(jersey);
@@ -268,30 +250,7 @@ export function loadSubpage(jersey) {
     var container = $('#home');
     container.empty().append(subpageDiv);
 
-    const artistEmbedContainer = document.createElement('div');
-    artistEmbedContainer.className = "video-section";
-
-    if (jersey.a_embed.length > 0) {
-        for (var i = 0; i < jersey.a_embed.length; i++) {
-            const embed = `<blockquote class="twitter-tweet">
-            <a href="https://twitter.com/x/status/${jersey.a_embed[i]}"></a> 
-            </blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`;  
-            artistEmbedContainer.insertAdjacentHTML("beforeend", embed);
-        }
-    } 
-    $('#video-anchor-a').append(artistEmbedContainer.outerHTML);
-
-    const miscEmbedContainer = document.createElement('div');
-    miscEmbedContainer.className = "video-section";
-    if (jersey.m_embed.length > 0) {
-        for (var i = 0; i < jersey.m_embed.length; i++) {
-            const embed = `<blockquote class="twitter-tweet">
-            <a href="https://twitter.com/x/status/${jersey.m_embed[i]}"></a> 
-            </blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`;  
-            miscEmbedContainer.insertAdjacentHTML("beforeend", embed);
-        }
-    } 
-    $('#video-anchor-m').append(miscEmbedContainer.outerHTML);
+    loadTweets(jersey.a_embed, jersey.m_embed);
 
     // replace img for modal
     $('.image-container-preview').on('click', function() {
@@ -303,13 +262,31 @@ export function loadSubpage(jersey) {
       });    
 }
 
-function checkAllTweetsRendered() {
-    const tweetElements = document.querySelectorAll('.twitter-tweet');
-    for (let i = 0; i < tweetElements.length; i++) {
-      const tweetElement = tweetElements[i];
-      if (!tweetElement.classList.contains('twitter-tweet-rendered')) {
-        return false;
-      }
-    }
-    return true;
+function loadTweets(a_embed, m_embed) {
+    const artistEmbedContainer = document.createElement('div');
+    artistEmbedContainer.className = "video-section";
+
+    if (a_embed.length > 0) {
+        for (var i = 0; i < a_embed.length; i++) {
+            const embed = `<blockquote class="twitter-tweet">
+            <a href="https://twitter.com/x/status/${a_embed[i]}"></a> 
+            </blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`;  
+            artistEmbedContainer.insertAdjacentHTML("beforeend", embed);
+        }
+    } 
+    console.log(artistEmbedContainer.outerHTML);
+    $('#video-anchor-a').append(artistEmbedContainer.outerHTML);
+
+    const miscEmbedContainer = document.createElement('div');
+    miscEmbedContainer.className = "video-section";
+    if (m_embed.length > 0) {
+        for (var i = 0; i < m_embed.length; i++) {
+            const embed = `<blockquote class="twitter-tweet">
+            <a href="https://twitter.com/x/status/${m_embed[i]}"></a> 
+            </blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`;  
+            miscEmbedContainer.insertAdjacentHTML("beforeend", embed);
+        }
+    } 
+    console.log(miscEmbedContainer.outerHTML);
+    $('#video-anchor-m').append(miscEmbedContainer.outerHTML);
 }

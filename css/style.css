@@ -802,3 +802,10 @@ a.card-link {
 a.card-link:hover {
     border-bottom: none;
 }
+
+/* mobile woes */
+.thumbnail img {
+    max-width: 100%;
+    aspect-ratio: 10/6;
+    object-fit: cover;
+}
