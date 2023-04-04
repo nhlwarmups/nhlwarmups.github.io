@@ -639,7 +639,7 @@ footer {
     cursor: default;
 }
 
-#cat-count, #team-count, #season-count {
+#cat-count, #team-count, #season-count, #color-count {
     font-size: 11px;
     color: var(--grey);
 }
