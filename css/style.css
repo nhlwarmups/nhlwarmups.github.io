@@ -162,14 +162,9 @@ p {
 }
 
 .logo {
-    max-height: 26px;
-    max-width: 26px;
+    max-height: 22px;
+    max-width: 22px;
     padding: 4px;
-}
-
-#subpage.logo {
-    max-height: 20px;
-    max-width: 20px;
     box-sizing: content-box;
 }
 
@@ -804,7 +799,11 @@ a.card-link:hover {
 }
 
 /* mobile woes */
-.thumbnail img {
+.thumbnail-container {
+    max-width: 100%;
+}
+
+.thumbnail-container img {
     max-width: 100%;
     object-fit: cover;
 }

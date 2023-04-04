@@ -201,7 +201,7 @@ export async function loadSubpage(jersey) {
                         </div>
                         <span class="date">Worn ${(jersey.date_pretty).join(", ")}</span>
                     </div>
-                    <img src="imgs/thumbnails/${jersey.team_id}.png" />
+                    <div class="thumbnail-container"> <img src="imgs/thumbnails/${jersey.team_id}.png" /> </div>
                     <span id="thumbnail-caption">With <b>${jersey.artist}</b> ${org}</span>
                 </div>
                 <div id="video-anchor-a"> </div>
