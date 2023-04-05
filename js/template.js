@@ -203,7 +203,6 @@ function getImageGal(jersey) {
 }
 
 function getSocials(jersey) {
-    //in support of <a href="${jersey.org_url}">${jersey.org_name}
     var socials = [];
 
     if ("website" in jersey.socials) {
@@ -237,7 +236,11 @@ function getOrg(jersey) {
     if (jersey.org_name[0] != "") {
         var orgs = []
         for (var i = 0; i < jersey.org_name.length; i++) {
-            var curr = `<a href="${jersey.org_url[i]}">${jersey.org_name[i]}</a>`;
+            if (jersey.org_url[i] != "") {
+                var curr = `<a href="${jersey.org_url[i]}">${jersey.org_name[i]}</a>`;
+            } else {
+                var curr = jersey.org_name[i];
+            }
             orgs.push(curr);
         }
         return (`in support of ${orgs.join(" and ")}`);
