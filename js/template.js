@@ -71,7 +71,9 @@ export function loadPreviews(jerseys, currPage) {
         link.className = "card-link";
         link.innerHTML = `
                 ${displaySeasons(jersey.seasons)}
-                <img class="thumbnail-img" src="imgs/thumb-sml/${jersey.team_id}.png" alt="${jersey.team_full} jersey design for ${jersey.event}" />
+                <div style="width: 100%; aspect-ratio: 10/6;">
+                    <img class="thumbnail-img" src="imgs/thumb-sml/${jersey.team_id}.png" alt="${jersey.team_full} jersey design for ${jersey.event}" />
+                </div>
                 <div class="info">
                     <div style="flex-grow: 1;">
                         <div class="event"> <strong>${jersey.event}</strong> </div>
