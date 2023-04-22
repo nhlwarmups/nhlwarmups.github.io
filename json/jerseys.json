@@ -2039,6 +2039,30 @@ var jsonObject = {
     "base_color": "green",
     "artist_embed": "1643731097623347201",
     "misc_embed": ""
+  },
+  {
+    "id": 86,
+    "team": "NJD",
+    "team_full": "New Jersey Devils",
+    "team_id": "njd08",
+    "event": "Fan Appreciation Night",
+    "category": "Community Appreciation",
+    "seasons": "2022-23",
+    "day_worn": "2023-04-11",
+    "day_worn_pretty": "April 11, 2023",
+    "artist": "Frank Grotkopf",
+    "org_name": "",
+    "org_url": "",
+    "statement": "The jerseys will encapsulate the 40 years of tradition and moments with the team and fans on the crest and two shoulder patches. The crest design will feature numbers of retired players, championship years, fan chants and moments. One shoulder will have the standard 40th anniversary patch and the other shoulder patch will feature the Prudential Center and The Meadowlands, the two places the Devils have called home.",
+    "source": "https://www.nhl.com/devils/news/devils-host-fan-appreciation-night/c-343396562",
+    "notes": "<li> The jersey design was created by a local artist who is also known as BackhandedDevil on social media </li>",
+    "website": "https://backhanded.crevado.com/",
+    "ig": "backhandeddevil",
+    "shop": "",
+    "img_urls": "FtdroGMXsAQTrtW, Ftd-pu4XsAEn3b7, Ftd-alLXgAQyPjw, Ftd-alJWwAkp11O, Ftd-alIXoAAovzV, FtdKRrbX0Aszw65, FtdKRroX0A8k6X4, FtdKRr4X0A45V3R, FtdKRsLX0AMdgu4",
+    "base_color": "red",
+    "artist_embed": "1645878308217802757",
+    "misc_embed": ""
   }
-]
+  ]
 }
